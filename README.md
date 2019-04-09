@@ -87,4 +87,12 @@ Once the theme is activated, you need to create a couple of categories to act as
 
 ## Deploy To Production
 
-Since a WordPress site is essentially just a bunch of php files along with a mysql database, must shared hosting providers will already have out of the box support for WordPress. 
+Since a WordPress site is essentially just a bunch of php files along with a mysql database, must shared hosting providers will already have out of the box support for it. 
+
+With that said, I deployed this theme to a siteground subdomain which you can find below:
+
+[View Demo Site](http://wpcodingchallenge.midtownbelize.com/)
+
+WP Admin Credentials:
+
+Username: admin, Password: password1234
