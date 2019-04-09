@@ -86,7 +86,7 @@ get_header(); ?>
       <?php
       $half_page_ad = array(
         'post_type' => 'ads',
-        'posts_per_page' => 2,
+        'posts_per_page' => 1,
         'tax_query'      => array(
           'relation'   => 'AND',
             array(
