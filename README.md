@@ -7,23 +7,50 @@ The wordpress coding challenge theme is a theme geared towards sufficing the req
 
 Since one of the requirements was to not use any third party utilities, all sections, and their auxiliary components were structured in a systematic nature to make the usage of the custom theme more predictable. 
 
-This means that any content that the user can edit will need to be assigned a number of metadata for it to work
+This means that any content that the user can edit will need to be assigned a number of metadata for it to work.
 
 Sections, stories, and ads all require existing metadata and supplementary data in order to function properly. This can be either of the following:
 
 Type | Description
 ------------- | -------------
-Tag  | This is used to properly define the location of ad units. i.e `Top Sidebar`, `Right Sidebar`, etc.
-Category  | This is used to define which section/page stories and ads should be displayed in. i.e. `Section 1`, `Section 2`, etc.
-Post Type | This is used to more easily organize `Ads` and `Stories` within their own catalogs in the admin panel of wordpress. 
+Tag  | This is used to properly define the type and location of ad units. i.e `Top Sidebar`, `Right Sidebar`, etc.
+Category  | This is used to define on which section/page stories and ads should be displayed in. i.e. `Section 1`, `Section 2`, etc.
+Post Type | This is used to more easily organize `Ads` and `Stories` within their own catalogs in the admin panel of wordpress as opposed to having all posts in one location.
 
 Using the aforementioned, an admin can easily manage (CRUD) stories, ads, and headlines for different sections. 
 
 This entire architecture is achieved by leveraging only existing WordPress APIs such as posts, custom post types, categories, and tags. 
 
+#### Example admin control flow:
+
+* Create a new category, called `News`.
+* Assign the new category to an existing menu, i.e. Top Menu.
+* Create a new `Story` post and assign it to the `News` category.
+* Tag the new post with the `Top Headline` tag for it to be used as the Top Headline for the `News` section.
+
+The above will render a `Top Headline` post within the news section.
+
+The process is almost identical for defining `Ad` post types. However, the theme depends on a number of tags which you will have to manually create unless they already exist.
+
+#### Required post tags:
+
+Exact Tag Name| Description
+------------- | -------------
+Half Page Ad| Register a post as the `Half Page Ad`
+Large Banner Ad| Register a post as the `Large Banner Ad`
+Right Sidebar | Register an ad to be displayed in the `Right Sidebar`
+Top Headline| Register a post as the `Top Headline` of a section
+Top Sidebar| Register an ad to be displayed in the `Top Sidebar`
+
+
 ## Deficiencies
 
 The downsides of this approach are quite obvious, but the main one is that the underlying components of this architecture have to be tightly coupled in order for it to function as a single unit (theme).
+
+Category -> Tags -> Ads
+
+Category -> Tags -> Story
+
 
 Consider the following weaknesses:
 
@@ -32,6 +59,9 @@ Consider the following weaknesses:
 * After a fresh installation, I have to manually create each dependency tag, i.e. `Top Sidebar`, before I can start creating ads. 
 
 As you can see the current architecture makes it rather easy to make mistakes and since x depends on y one mistake can cause the entire unit to fail. 
+
+
+Of course, in a real-world scenario, one would create a plugin or rely on an existing one to control the functionality of the site so that the theme would only need to worry about how the site looks.
 
 ## Run Locally
 
@@ -55,3 +85,6 @@ Once installed you have to activate the `Coding Challenge Theme` within the word
 
 Once the theme is activated, you need to create a couple of categories to act as sections. Next, you must create a Top Menu and assign the categories to it.
 
+## Deploy To Production
+
+Since a WordPress site is essentially just a bunch of php files along with a mysql database, must shared hosting providers will already have out of the box support for WordPress. 

@@ -253,3 +253,5 @@ function cc_get_right_sidebar($cat_id)
     get_template_part('/partials/ads/large-banner-placeholder');
   }
 }
+
+add_theme_support( 'title-tag' );
